@@ -43,7 +43,7 @@ class FilterTest < ActiveSupport::TestCase
       filter = users(:david).filters.remember(indexed_by: "most_active", assignment_status: "unassigned", tag_ids: [ tags(:mobile).id ])
 
       assert_changes "filter.reload.updated_at" do
-        assert_equal filter, users(:david).filters.remember(assignment_status: "unassigned", tag_ids: [ tags(:mobile).id ])
+        assert_equal filter, users(:david).filters.remember(tag_ids: [ tags(:mobile).id ], assignment_status: "unassigned")
       end
     end
   end
