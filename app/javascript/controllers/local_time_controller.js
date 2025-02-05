@@ -3,12 +3,22 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["time", "date", "datetime", "shortdate", "ago"]
 
+  #timer
+
   initialize() {
     this.timeFormatter = new Intl.DateTimeFormat(undefined, { timeStyle: "short" })
     this.dateFormatter = new Intl.DateTimeFormat(undefined, { dateStyle: "long" })
     this.shortDateFormatter = new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" })
     this.dateTimeFormatter = new Intl.DateTimeFormat(undefined, { timeStyle: "short", dateStyle: "short" })
     this.agoFormatter = new AgoFormatter()
+  }
+
+  connect() {
+    this.#timer = setInterval(() => this.#refreshRelativeTimes(), 30_000)
+  }
+
+  disconnect() {
+    clearInterval(this.#timer)
   }
 
   timeTargetConnected(target) {
@@ -29,6 +39,12 @@ export default class extends Controller {
 
   agoTargetConnected(target) {
     this.#formatTime(this.agoFormatter, target)
+  }
+
+  #refreshRelativeTimes() {
+    this.agoTargets.forEach(target => {
+      this.#formatTime(this.agoFormatter, target)
+    })
   }
 
   #formatTime(formatter, target) {
