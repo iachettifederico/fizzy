@@ -32,7 +32,7 @@ module Filter::Fields
   end
 
   def with(**fields)
-    dup.tap do |filter|
+    creator.filters.from_params(as_params).tap do |filter|
       fields.each do |key, value|
         filter.public_send("#{key}=", value)
       end
