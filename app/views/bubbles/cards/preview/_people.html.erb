@@ -1,12 +1,3 @@
-<div class="card__people flex gap margin-inline-start">
-  <div class="flex flex-column align-center">
-    <span class="txt-uppercase">Reported</span>
-    <%= avatar_tag bubble.creator, loading: :lazy, class: "avatar" %>
-  </div>
-
-  <div class="card__assignees flex flex-column align-center">
-    <span class="txt-uppercase">Assigned</span>
-
-    <%= render "bubbles/cards/preview/assignees", bubble: bubble %>
-  </div>
-</div>
+<%= render "bubbles/cards/common/people", bubble: bubble do%>
+  <%= render "bubbles/cards/preview/assignees", bubble: bubble %>
+<% end %>
