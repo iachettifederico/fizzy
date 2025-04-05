@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { differenceInDays } from "helpers/date_helpers";
+import { differenceInDays } from "helpers/date_helpers"
 
 export default class extends Controller {
   static targets = [ "time", "date", "datetime", "shortdate", "ago", "indays", "daysago" ]
@@ -12,8 +12,8 @@ export default class extends Controller {
     this.shortDateFormatter = new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" })
     this.dateTimeFormatter = new Intl.DateTimeFormat(undefined, { timeStyle: "short", dateStyle: "short" })
     this.agoFormatter = new AgoFormatter()
-    this.indaysFormatter = new InDaysFormatter()
     this.daysagoFormatter = new DaysAgoFormatter()
+    this.indaysFormatter = new InDaysFormatter()
   }
 
   connect() {
@@ -60,7 +60,7 @@ export default class extends Controller {
 
   #formatTime(formatter, target) {
     const dt = new Date(target.getAttribute("datetime"))
-    target.textContent = formatter.format(dt)
+    target.innerHTML = formatter.format(dt)
     target.title = this.dateTimeFormatter.format(dt)
   }
 }
@@ -93,32 +93,26 @@ class AgoFormatter {
   }
 }
 
-class InDaysFormatter {
-  format(date) {
-    const days = differenceInDays(new Date(), date)
-
-    if (days <= 0) {
-      return "today"
-    }
-    if (days === 1) {
-      return "tomorrow"
-    }
-
-    return `in ${Math.round(days)} days`
-  }
-}
-
 class DaysAgoFormatter {
   format(date) {
     const days = differenceInDays(date, new Date())
 
-    if (days <= 0) {
-      return "today"
-    }
-    if (days === 1) {
-      return "yesterday"
-    }
-
-    return `${Math.round(days)} days ago`
+    if (days <= 0) return styleableValue("today")
+    if (days === 1) return styleableValue("yesterday")
+    return `${styleableValue(days)} days ago`
   }
+}
+
+class InDaysFormatter {
+  format(date) {
+    const days = differenceInDays(new Date(), date)
+
+    if (days <= 0) return styleableValue("today")
+    if (days === 1) return styleableValue("tomorrow")
+    return `in ${styleableValue(days)} days`
+  }
+}
+
+function styleableValue(value) {
+  return `<span class="local-time-value">${value}</span>`
 }

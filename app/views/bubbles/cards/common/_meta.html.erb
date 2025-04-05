@@ -8,7 +8,7 @@
 
     <% if bubble.creating? %>
       <span class="pad-inline overflow-ellipsis">Expires
-        <%= local_datetime_tag(bubble.auto_pop_at, style: :daysago) %>
+        <%= local_datetime_tag(bubble.auto_pop_at, style: :indays) %>
       </span>
     <% else %>
       <span class="pad-inline overflow-ellipsis">Added

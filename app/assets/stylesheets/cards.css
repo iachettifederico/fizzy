@@ -86,6 +86,10 @@
     inline-size: calc(100dvw - var(--actions-inline-inset) * 2 - var(--btn-size) * 2);
   }
 
+  .local-time-value {
+    font-weight: bold;
+  }
+
   @media (prefers-color-scheme: dark) {
     --border-color: var(--color-subtle-dark);
     --border-size: 1px;
