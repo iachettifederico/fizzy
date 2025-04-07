@@ -97,6 +97,9 @@ Rails.application.routes.draw do
   get "up", to: "rails/health#show", as: :rails_health_check
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  resources :uploads, only: :create
+  get "/u/*slug" => "uploads#show", as: :upload
+
   resource :terminal, only: [ :show, :edit ]
 
   root "events#index"
