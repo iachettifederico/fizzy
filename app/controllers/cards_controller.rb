@@ -5,10 +5,7 @@ class CardsController < ApplicationController
 
   before_action :set_filter, only: :index
   before_action :set_card, only: %i[ show edit update destroy ]
-  before_action :handle_display_count, only: :index
 
-  DISPLAY_COUNT_OPTIONS = [ 6, 12, 18, 24 ].freeze
-  DEFAULT_DISPLAY_COUNT = 6
   RECENTLY_CLOSED_LIMIT = 100
 
   def index
@@ -54,18 +51,5 @@ class CardsController < ApplicationController
 
     def deleted_notice
       "Card deleted" unless @card.creating?
-    end
-
-    def handle_display_count
-      if params[:set_display_count].present?
-        cookies[:display_count] = params[:set_display_count]
-        redirect_to cards_path(
-          params.permit(*Filter::PERMITTED_PARAMS, :collection_ids).except(:set_display_count)
-        )
-      end
-    end
-
-    def display_count
-      (cookies[:display_count] || DEFAULT_DISPLAY_COUNT).to_i
     end
 end

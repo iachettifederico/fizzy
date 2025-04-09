@@ -3,7 +3,7 @@ module Filter::Params
 
   PERMITTED_PARAMS = %i[
     indexed_by assignment_status collection_ids creator_ids
-    assignee_ids stage_ids tag_ids terms display_count
+    assignee_ids stage_ids tag_ids terms
   ].freeze
 
   def as_params
@@ -15,8 +15,7 @@ module Filter::Params
       assignee_ids: assignees.ids,
       stage_ids: stages.ids,
       tag_ids: tags.ids,
-      terms: terms,
-      display_count: display_count
+      terms: terms
     )
   end
 end

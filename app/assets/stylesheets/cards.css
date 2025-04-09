@@ -456,17 +456,6 @@
     }
   }
 
-  .card-count__selector {
-    inset: 0.5cqi 0.5cqi auto auto;
-    position: absolute;
-    text-align: start;
-    z-index: 1;
-
-    .popup {
-      inset: 1em 1em auto auto;
-    }
-  }
-
   .input.boost__input {
     --hover-size: 0;
     --input-border-radius: 0;

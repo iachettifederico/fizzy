@@ -10,15 +10,4 @@ module CardsHelper
 
     "--card-rotate: #{value}deg;"
   end
-
-  def display_count_options
-    CardsController::DISPLAY_COUNT_OPTIONS.map do |count|
-      {
-        value: count,
-        label: count,
-        selected: @display_count == count,
-        id: "display-count-#{count}"
-      }
-    end
-  end
 end
