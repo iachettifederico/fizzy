@@ -24,7 +24,7 @@
   }
 
   .popup__group {
-    background: var(--color-subtle-light);
+    background: var(--color-ink-lightest);
     max-inline-size: 100%;
     padding-inline: var(--inline-space);
 

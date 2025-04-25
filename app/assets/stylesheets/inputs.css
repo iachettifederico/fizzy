@@ -96,7 +96,7 @@
     }
 
     option {
-      background-color: var(--color-bg);
+      background-color: var(--color-canvas);
       color: var(--color-ink);
     }
   }
