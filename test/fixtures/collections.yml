@@ -4,3 +4,9 @@ writebook:
   all_access: true
   auto_close_period: <%= 30.days.to_i %>
   workflow: qa
+
+private:
+  name: Private collection
+  creator: kevin
+  all_access: false
+  auto_close_period: <%= 30.days.to_i %>

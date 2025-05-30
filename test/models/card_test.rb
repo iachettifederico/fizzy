@@ -128,4 +128,16 @@ class CardTest < ActiveSupport::TestCase
     card.publish
     assert_equal "Untitled", card.reload.title
   end
+
+  test "grants access to assignees when moved to a new collection" do
+    card = cards(:logo)
+    assignee = users(:david)
+    card.toggle_assignment(assignee)
+    
+    collection = collections(:private)
+    assert_not_includes collection.users, assignee
+    
+    card.update!(collection: collection)
+    assert_includes collection.users.reload, assignee
+  end
 end
