@@ -13,4 +13,8 @@ class Tag < ApplicationRecord
   def hashtag
     "#" + title
   end
+
+  def cards_count
+    cards.count
+  end
 end
