@@ -1,5 +1,5 @@
-<strong class="popup__group-title">Collections</strong>
-<%= form_with url: cards_path, method: :get, class: "popup__list",
+<li class="popup__group-title">Collections</li>
+<%= form_with url: cards_path, method: :get, class: "display-contents",
       data: { controller: "form" } do |form| %>
   <% if Current.user.collections.one? %>
     <%= link_to cards_path, class: "popup__group", data: { filter_target: "item", navigable_list_target: "item" } do %>
@@ -9,20 +9,22 @@
       <% end %>
     <% end %>
   <% elsif Current.user.collections.many? %>
-    <%= link_to cards_path, class: "popup__group", data: { filter_target: "item", navigable_list_target: "item" } do %>
-      <label class="btn txt-xx-small flex-item-no-shrink">
-        <input type="checkbox">
+    <li>
+      <%= link_to cards_path, class: "popup__group", data: { filter_target: "item", navigable_list_target: "item" } do %>
+        <label class="btn txt-xx-small flex-item-no-shrink">
+          <input type="checkbox">
 
-        <span class="for-screen-reader">
-          See everything in all collections
-        </span>
-        <%= icon_tag "check", size: 18, class: "checked" %>
-      </label>
-      <%= tag.div class: "popup__item btn" do %>
-        <span class="overflow-ellipsis">All collections</span>
-        <span class="txt-ink translucent flex-item-no-shrink flex-item-justify-end"><span class="txt-x-small txt-uppercase">GO TO</span> ›</span>
+          <span class="for-screen-reader">
+            See everything in all collections
+          </span>
+          <%= icon_tag "check", size: 18, class: "checked" %>
+        </label>
+        <%= tag.div class: "popup__item btn" do %>
+          <span class="overflow-ellipsis">All collections</span>
+          <span class="txt-ink translucent flex-item-no-shrink flex-item-justify-end"><span class="txt-x-small txt-uppercase">GO TO</span> ›</span>
+        <% end %>
       <% end %>
-    <% end %>
+    </li>
 
     <% Current.user.collections.ordered_by_recently_accessed.each do |collection| %>
       <li class="popup__group" data-filter-target="item" data-navigable-list-target="item">

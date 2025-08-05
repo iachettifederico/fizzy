@@ -1,22 +1,24 @@
-<strong class="popup__group-title">Saved filters</strong>
-<div class="popup__group gap-half overflow-ellipsis" data-navigable-list-target="item" data-filter-target="item">
-  <%= link_to cards_path(expand_all: true), class: "btn popup__new popup__item" do %>
-    <%= icon_tag "bookmark" %>
-    <div class="flex flex-column txt-tight-lines min-width txt-small">
-      <strong class="overflow-ellipsis">Create a new filter</strong>
-    </div>
-    <span class="translucent flex-item-no-shrink flex-item-justify-end"> ›</span>
-  <% end %>
-</div>
-<% @filters.each do |filter| %>
-  <div class="popup__group gap-half overflow-ellipsis" data-filter-target="item" data-navigable-list-target="item">
-    <%= link_to cards_path(filter_id: filter.id), class: "btn popup__new popup__item" do %>
+<ul class="popup__list">
+  <li class="popup__group-title">Saved filters</li>
+  <li class="popup__group gap-half overflow-ellipsis" data-navigable-list-target="item" data-filter-target="item">
+    <%= link_to cards_path(expand_all: true), class: "btn popup__new popup__item" do %>
       <%= icon_tag "bookmark" %>
       <div class="flex flex-column txt-tight-lines min-width txt-small">
-        <span class="overflow-ellipsis"><%= filter_selected_collections_sentence(filter).html_safe %></span>
-        <span class="overflow-ellipsis"><%= filter.summary %></span>
+        <strong class="overflow-ellipsis">Create a new filter</strong>
       </div>
       <span class="translucent flex-item-no-shrink flex-item-justify-end"> ›</span>
     <% end %>
-  </div>
-<% end %>
+  </li>
+  <% @filters.each do |filter| %>
+    <li class="popup__group gap-half overflow-ellipsis" data-filter-target="item" data-navigable-list-target="item">
+      <%= link_to cards_path(filter_id: filter.id), class: "btn popup__new popup__item" do %>
+        <%= icon_tag "bookmark" %>
+        <div class="flex flex-column txt-tight-lines min-width txt-small">
+          <span class="overflow-ellipsis"><%= filter_selected_collections_sentence(filter).html_safe %></span>
+          <span class="overflow-ellipsis"><%= filter.summary %></span>
+        </div>
+        <span class="translucent flex-item-no-shrink flex-item-justify-end"> ›</span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

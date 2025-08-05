@@ -36,15 +36,15 @@
             <%= render "cards/show/collections" %>
           </ul>
         <% end %>
-        <strong class="popup__group-title">Tags</strong>
-        <div class="popup__list">
+        <ul class="popup__list">
+          <li class="popup__group-title">Tags</li>
           <%= render partial: "events/filter/tag", collection: Tag.all.alphabetically, as: :tag %>
-        </div>
+        </ul>
 
-        <strong class="popup__group-title">People</strong>
-        <div class="popup__list">
+        <ul class="popup__list">
+          <li class="popup__group-title">People</li>
           <%= render partial: "events/filter/user", collection: User.active.alphabetically, as: :user %>
-        </div>
+        </ul>
 
         <% if platform.desktop? %>
           <footer class="popup__footer">
