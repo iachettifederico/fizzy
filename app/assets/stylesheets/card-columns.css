@@ -212,10 +212,16 @@
 
     .card--new {
       --card-padding-block: var(--block-space-double);
-  
+      
+      border: 1px solid var(--color-selected-dark);
       font-size: 0.8rem !important;
       rotate: 0 !important;
       text-align: center;
+
+      .btn {
+        border: 0;
+        color: var(--color-considering);
+      }
     }
 
     .card__body {

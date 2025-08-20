@@ -1,7 +1,7 @@
 <section id="considering-cards" class="cards cards--considering" data-drag-and-drop-target="container"  data-drop-target="considering">
   <% if collection = @filter.single_collection || Current.user.collections.first %>
     <div class="card card--new">
-      <%= button_to collection_cards_path(collection), method: :post, class: "btn btn--link" do %>
+      <%= button_to collection_cards_path(collection), method: :post, class: "btn" do %>
         <%= icon_tag "add" %>
         <span>Add a card</span>
     </div>
