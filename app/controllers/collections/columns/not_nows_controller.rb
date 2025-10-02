@@ -1,5 +1,5 @@
 class Collections::Columns::NotNowsController < ApplicationController
-  include CollectionScoped
+  include CollectionScoped, FilterScoped
 
   def show
     set_page_and_extract_portion_from @collection.cards.postponed.reverse_chronologically.with_golden_first
