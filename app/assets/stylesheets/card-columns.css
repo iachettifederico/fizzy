@@ -591,6 +591,7 @@
     --card-padding-block: var(--block-space);
 
     border: 1px solid var(--border-color);
+    margin-block-end: var(--cards-gap);
     text-align: center;
 
     &:has(dialog[open]) {
