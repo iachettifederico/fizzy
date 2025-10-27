@@ -5,11 +5,10 @@
     </div>
 
     <%= turbo_frame_tag comment, :new_reaction do %>
-      <%= link_to new_card_comment_reaction_path(comment.card, comment), role: "button",
-            class: "reactions__trigger btn btn--circle borderless", action: "soft-keyboard#open",
-            data: { turbo_frame: dom_id(comment, :new_reaction), action: "dialog#close" } do %>
-        <%= icon_tag "reaction" %>
-        <span class="for-screen-reader">Add your own reaction</span>
+      <%= render "cards/comments/reactions/quick_reaction", comment: comment do %>
+        <button class="reaction__action btn btn--circle" data-action="click->dialog#open:stop">
+          <%= icon_tag "reaction" %>
+        </button>
       <% end %>
     <% end %>
   </div>

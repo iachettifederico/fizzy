@@ -48,7 +48,7 @@ module NotificationsHelper
           title: "Mark as read",
           data: { action: "form#submit:stop badge#update:stop", form_target: "submit" },
           form: { data: { controller: "form" } } do
-        concat(icon_tag("remove"))
+        concat(icon_tag("remove-med"))
         concat(tag.span("Mark as read", class: "for-screen-reader"))
       end
     end

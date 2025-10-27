@@ -4,7 +4,7 @@
     --comment-padding-block: var(--block-space-half);
     --comment-padding-inline: var(--inline-space-double);
     --comment-max: 70ch;
-    --reaction-size: 1.6875rem;
+    --reaction-size: 2rem;
 
     display: flex;
     flex-direction: column;
@@ -37,6 +37,8 @@
   }
 
   .comment__author {
+    margin-inline-end: calc(var(--comment-padding-inline) * -0.66);
+
     .btn {
       font-weight: inherit;
     }
@@ -52,7 +54,6 @@
   }
 
   .comment__body {
-    padding-inline-end: var(--reaction-size);
     text-align: start;
 
     :first-child {
@@ -74,7 +75,7 @@
     border-radius: 0.2em;
     padding:
       var(--comment-padding-block)
-      calc(var(--comment-padding-inline) / 2)
+      var(--comment-padding-inline)
       calc(var(--comment-padding-block) * 1.5)
       var(--comment-padding-inline);
     word-wrap: break-word;
@@ -88,8 +89,17 @@
     }
   }
 
-  .comment--mine {
-    .comment__reaction {
+  .comment__reaction {
+    background-color: var(--color-ink-lightest);
+    opacity: 0.66;
+
+    @media (any-hover: hover) {
+      .comment:not(:hover) & {
+        opacity: 0;
+      }
+    }
+
+    .comment--mine & {
       display: none;
     }
   }
@@ -137,7 +147,8 @@
       );
     }
 
-    .reactions {
+    .reactions,
+    .quick-reaction {
       display: none !important;
     }
   }
