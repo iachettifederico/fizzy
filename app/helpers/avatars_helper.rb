@@ -19,6 +19,16 @@ module AvatarsHelper
     end
   end
 
+  def mail_avatar_tag(user, size: 48, **options)
+    if user.avatar.attached?
+      image_tag user_avatar_url(notification.creator), alt: notification.creator.name, class: "avatar", **options
+    else
+      tag.span class: "avatar" do
+        user.initials
+      end
+    end
+  end
+
   def avatar_preview_tag(user, hidden_for_screen_reader: false, **options)
     tag.span class: class_names("avatar", options.delete(:class)),
       aria: { hidden: hidden_for_screen_reader, label: user.name },
