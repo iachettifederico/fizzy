@@ -14,7 +14,7 @@ class Notification < ApplicationRecord
   after_destroy_commit :broadcast_read
   after_create :bundle
 
-  scope :preloaded, -> { preload(:creator, :account, source: [ :board, :creator ]) }
+  scope :preloaded, -> { preload(:creator, :account, source: [ :board, :creator, { eventable: [ :closure, :board, :assignments ] } ]) }
 
   delegate :notifiable_target, to: :source
   delegate :card, to: :source

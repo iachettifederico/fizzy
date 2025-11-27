@@ -15,7 +15,7 @@ module Card::Assignable
   end
 
   def assigned_to?(user)
-    assignments.exists? assignee: user
+    assignments.any? { |a| a.assignee_id == user.id }
   end
 
   def assigned?

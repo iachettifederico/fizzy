@@ -1,6 +1,6 @@
 <%= messages_tag(card) do %>
   <% if card.published? %>
-    <%= render partial: "cards/comments/comment", collection: card.comments.chronologically, cached: true %>
+    <%= render partial: "cards/comments/comment", collection: card.comments.preloaded.chronologically, cached: true %>
     <%= render "cards/comments/new", card: card %>
 
     <%= render "cards/comments/watchers", card: card %>

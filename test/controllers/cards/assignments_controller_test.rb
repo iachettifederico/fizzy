@@ -11,12 +11,12 @@ class Cards::AssignmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create" do
-    assert_changes "cards(:logo).assigned_to?(users(:david))", from: false, to: true do
+    assert_changes "cards(:logo).reload.assigned_to?(users(:david))", from: false, to: true do
       post card_assignments_path(cards(:logo)), params: { assignee_id: users(:david).id }, as: :turbo_stream
       assert_meta_replaced(cards(:logo))
     end
 
-    assert_changes "cards(:logo).assigned_to?(users(:david))", from: true, to: false do
+    assert_changes "cards(:logo).reload.assigned_to?(users(:david))", from: true, to: false do
       post card_assignments_path(cards(:logo)), params: { assignee_id: users(:david).id }, as: :turbo_stream
       assert_meta_replaced(cards(:logo))
     end

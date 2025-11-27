@@ -37,7 +37,7 @@ class CardTest < ActiveSupport::TestCase
     assert_difference({ -> { cards(:logo).assignees.count } => -1, -> { Event.count } => +1 }) do
       cards(:logo).toggle_assignment users(:kevin)
     end
-    assert_not cards(:logo).assigned_to?(users(:kevin))
+    assert_not cards(:logo).reload.assigned_to?(users(:kevin))
     unassign_event = Event.last
     assert_equal "card_unassigned", unassign_event.action
     assert_equal [ users(:kevin) ], unassign_event.assignees

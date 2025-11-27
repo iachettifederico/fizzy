@@ -1,7 +1,7 @@
 <%= turbo_frame_tag comment, :reacting do %>
   <div class="reactions">
     <div id="<%= dom_id(comment, :reactions) %>" class="reactions__list">
-      <%= render partial: "cards/comments/reactions/reaction", collection: comment.reactions.includes(:reacter).ordered %>
+      <%= render partial: "cards/comments/reactions/reaction", collection: comment.reactions %>
     </div>
 
     <%= turbo_frame_tag comment, :new_reaction do %>
