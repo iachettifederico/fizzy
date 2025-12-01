@@ -3,7 +3,7 @@ module Card::Exportable
   include ActionView::Helpers::TagHelper
 
   def export_json
-    {
+    JSON.pretty_generate({
       number: number,
       title: title,
       board: board.name,
@@ -20,7 +20,7 @@ module Card::Exportable
           created_at: comment.created_at.iso8601
         }
       end
-    }.to_json
+    })
   end
 
   def export_attachments
