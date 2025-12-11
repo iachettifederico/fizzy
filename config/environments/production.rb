@@ -5,18 +5,23 @@ Rails.application.configure do
 
   # Email provider Settings
   #
-  # Configure these according to whichever email provider you use. An example setup
-  # using SMTP looks like the following:
-  #
-  # config.action_mailer.smtp_settings = {
-  #   address:              'smtp.example.com', # The address of your email provider's SMTP server
-  #   port:                 2525,
-  #   domain:               'example.com',      # Your domain, which Fizzy will send email from
-  #   user_name:            ENV["SMTP_USERNAME"],
-  #   password:             ENV["SMTP_PASSWORD"],
-  #   authentication:       :plain,
-  #   enable_starttls_auto: true
-  # }
+  # Configured for Resend (https://resend.com)
+  # To use a different provider, update the address, port, and domain below
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.resend.com",
+    port:                 587,
+    domain:               "iachetti.com",
+    user_name:            ENV["SMTP_USERNAME"],
+    password:             ENV["SMTP_PASSWORD"],
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
+
+  # Configure the default URL for emails (used in magic links)
+  config.action_mailer.default_url_options = {
+    host: "fizzy.iachetti.com",
+    protocol: "https"
+  }
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
