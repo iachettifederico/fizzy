@@ -7,6 +7,9 @@ Rails.application.configure do
   #
   # Configured for Resend (https://resend.com)
   # To use a different provider, update the address, port, and domain below
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
     address:              "smtp.resend.com",
     port:                 587,
